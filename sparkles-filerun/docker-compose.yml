@@ -1,21 +1,28 @@
 version: "3.7"
 
 services:
-  app_proxy:
-    image: getumbrel/app-proxy:1.0.0
-    environment:
-      APP_HOST: filerun
-      APP_PORT: 80
-      PROXY_AUTH_ADD: "false"
-    ports:
-      - "8009:8009"
-    container_name: filerun_app_proxy
-
   filerun:
     image: filerun/filerun:8.1
-    container_name: filerun
+    container_name: sparkles-filerun
+    environment:
+      FR_DB_HOST: sparkles-filerun-db
+      FR_DB_PORT: 3306
+      FR_DB_NAME: filerun
+      FR_DB_USER: filerun
+      FR_DB_PASS: filerunpass
     volumes:
-      - ${APP_DATA_DIR}/user-files:/user-files
       - ${APP_DATA_DIR}/html:/var/www/html
+      - /mnt/hdd:/user-files
     ports:
-      - 80
+      - 8385:80
+
+  sparkles-filerun-db:
+    image: mariadb:10.5
+    container_name: sparkles-filerun-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: filerun
+      MYSQL_USER: filerun
+      MYSQL_PASSWORD: filerunpass
+    volumes:
+      - ${APP_DATA_DIR}/db:/var/lib/mysql
