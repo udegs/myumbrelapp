@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  filerun:
+    image: filerun/filerun:8.1
+    container_name: filerun
+    volumes:
+      - ${APP_DATA_DIR}/user-files:/user-files
+    ports:
+      - 80

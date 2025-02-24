@@ -1,0 +1,17 @@
+manifestVersion: 1
+id: filerun-app
+name: FileRun
+tagline: A modern file manager for your server
+category: Files
+version: "8.1"
+port: 80
+description: >-
+  FileRun is a self-hosted file manager that offers a beautiful and intuitive user interface, making file management easy.
+releaseNotes: >-
+  Initial release of FileRun on Umbrel.
+developer: "Edu"
+website: https://filerun.com
+repo: https://github.com/filerun/docker
+support: https://github.com/filerun/docker/issues
+gallery:
+  - https://filerun.com/assets/img/screenshots/file-run-ui.jpg
